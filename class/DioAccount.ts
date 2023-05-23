@@ -18,9 +18,10 @@ export abstract class DioAccount {
     return this.name
   }
 
-  deposit = (): void => {
+  deposit = (countDeposit: number): void => {
     if(this.validateStatus()){
-      console.log('Voce depositou')
+      this.balance += countDeposit
+      console.log('Voce depositou:',countDeposit)
     }
   }
 
