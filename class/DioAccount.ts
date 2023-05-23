@@ -25,12 +25,24 @@ export abstract class DioAccount {
     }
   }
 
-  withdraw = (): void => {
-    console.log('Voce sacou')
+  withdraw = (withdrawal: number): void => {
+    if(this.validateStatus() && this.validateWithdraw(withdrawal)){
+      this.balance -= withdrawal
+      console.log('Voce sacou: ',withdrawal)
+    } else{
+      console.log('Saldo insuficiente ou conta não ativa') 
+    }
   }
 
   getBalance = (): void => {
     console.log(this.balance)
+  }
+
+  private validateWithdraw = (withdrawal: number): boolean =>{
+    if(withdrawal > this.balance){
+      return false
+    }
+    return true
   }
 
   private validateStatus = (): boolean => {
